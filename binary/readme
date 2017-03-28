@@ -1,1 +1,25 @@
-å·²ç»ç¼–è¯‘å¥½çš„äºŒè¿›åˆ¶æ–‡ä»¶ä»¥åŠå®‰è£…è„šæœ¬
+Ò»¡¢ÏÂÔØÔ´Âë²¢½âÑ¹
+	wget https://github.com/snooda/net-speeder/archive/master.zip
+	unzip master.zip
+
+¶þ¡¢×¼±¸±àÒë»·¾³
+	debian/ubuntu°²×°£º
+	apt-get install libnet1-dev
+	apt-get install libpcap0.8-dev #°²×°libpcap-dev£º
+
+centos°²×°£º
+	yum install epel-release
+	yum install libnet libpcap libnet-devel libpcap-devel
+
+±àÒë£º
+	Linux Cooked interfaceÊ¹ÓÃ±àÒë£¨venetX£¬OpenVZ£©£º
+	sh build.sh -DCOOKED      #ÆÕÍ¨Íø¿¨Ê¹ÓÃ±àÒë£¨Xen£¬KVM£¬ÎïÀí»ú£©£º
+	sh build.sh               #Ê¹ÓÃ·½·¨(ÐèÒªrootÈ¨ÏÞÆô¶¯£©£º
+
+#²ÎÊý£º./net_speeder Íø¿¨Ãû ¼ÓËÙ¹æÔò£¨bpf¹æÔò£©
+#ovzÓÃ·¨(¼ÓËÙËùÓÐipÐ­ÒéÊý¾Ý)£º 
+./net_speeder venet0 "ip"
+
+echo "/usr/shell/net_speeder64 venet0 \"ip\" > /tmp/net_speeder.log" >> /etc/rc.local
+echo "/usr/shell/net_speeder64 eth0 \"ip\" > /tmp/net_speeder.log" >> /etc/rc.local
+nohup /usr/shell/net_speeder64 eth0 "ip" &
